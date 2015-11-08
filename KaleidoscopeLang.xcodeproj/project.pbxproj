@@ -1,0 +1,394 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B8B97E581BEF55CE00CCFC4B /* KaleidoscopeLang.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8B97E5F1BEF55CE00CCFC4B /* KaleidoscopeLang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */; };
+		B8B97E641BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B8B97E601BEF55CE00CCFC4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8B97E4B1BEF55CE00CCFC4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8B97E531BEF55CE00CCFC4B;
+			remoteInfo = KaleidoscopeLang;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KaleidoscopeLang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KaleidoscopeLang.h; sourceTree = "<group>"; };
+		B8B97E591BEF55CE00CCFC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8B97E5E1BEF55CE00CCFC4B /* KaleidoscopeLangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaleidoscopeLangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaleidoscopeLangTests.swift; sourceTree = "<group>"; };
+		B8B97E651BEF55CE00CCFC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B8B97E501BEF55CE00CCFC4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B97E5B1BEF55CE00CCFC4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B97E5F1BEF55CE00CCFC4B /* KaleidoscopeLang.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B8B97E4A1BEF55CE00CCFC4B = {
+			isa = PBXGroup;
+			children = (
+				B8B97E561BEF55CE00CCFC4B /* KaleidoscopeLang */,
+				B8B97E621BEF55CE00CCFC4B /* KaleidoscopeLangTests */,
+				B8B97E551BEF55CE00CCFC4B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B8B97E551BEF55CE00CCFC4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */,
+				B8B97E5E1BEF55CE00CCFC4B /* KaleidoscopeLangTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8B97E561BEF55CE00CCFC4B /* KaleidoscopeLang */ = {
+			isa = PBXGroup;
+			children = (
+				B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */,
+				B8B97E591BEF55CE00CCFC4B /* Info.plist */,
+			);
+			path = KaleidoscopeLang;
+			sourceTree = "<group>";
+		};
+		B8B97E621BEF55CE00CCFC4B /* KaleidoscopeLangTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */,
+				B8B97E651BEF55CE00CCFC4B /* Info.plist */,
+			);
+			path = KaleidoscopeLangTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B8B97E511BEF55CE00CCFC4B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B97E581BEF55CE00CCFC4B /* KaleidoscopeLang.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B8B97E531BEF55CE00CCFC4B /* KaleidoscopeLang */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B97E681BEF55CE00CCFC4B /* Build configuration list for PBXNativeTarget "KaleidoscopeLang" */;
+			buildPhases = (
+				B8B97E4F1BEF55CE00CCFC4B /* Sources */,
+				B8B97E501BEF55CE00CCFC4B /* Frameworks */,
+				B8B97E511BEF55CE00CCFC4B /* Headers */,
+				B8B97E521BEF55CE00CCFC4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KaleidoscopeLang;
+			productName = KaleidoscopeLang;
+			productReference = B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B8B97E5D1BEF55CE00CCFC4B /* KaleidoscopeLangTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B97E6B1BEF55CE00CCFC4B /* Build configuration list for PBXNativeTarget "KaleidoscopeLangTests" */;
+			buildPhases = (
+				B8B97E5A1BEF55CE00CCFC4B /* Sources */,
+				B8B97E5B1BEF55CE00CCFC4B /* Frameworks */,
+				B8B97E5C1BEF55CE00CCFC4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8B97E611BEF55CE00CCFC4B /* PBXTargetDependency */,
+			);
+			name = KaleidoscopeLangTests;
+			productName = KaleidoscopeLangTests;
+			productReference = B8B97E5E1BEF55CE00CCFC4B /* KaleidoscopeLangTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B8B97E4B1BEF55CE00CCFC4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Ben Cochran";
+				TargetAttributes = {
+					B8B97E531BEF55CE00CCFC4B = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					B8B97E5D1BEF55CE00CCFC4B = {
+						CreatedOnToolsVersion = 7.1;
+					};
+				};
+			};
+			buildConfigurationList = B8B97E4E1BEF55CE00CCFC4B /* Build configuration list for PBXProject "KaleidoscopeLang" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B8B97E4A1BEF55CE00CCFC4B;
+			productRefGroup = B8B97E551BEF55CE00CCFC4B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B8B97E531BEF55CE00CCFC4B /* KaleidoscopeLang */,
+				B8B97E5D1BEF55CE00CCFC4B /* KaleidoscopeLangTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B8B97E521BEF55CE00CCFC4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B97E5C1BEF55CE00CCFC4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B8B97E4F1BEF55CE00CCFC4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B97E5A1BEF55CE00CCFC4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B97E641BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B8B97E611BEF55CE00CCFC4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8B97E531BEF55CE00CCFC4B /* KaleidoscopeLang */;
+			targetProxy = B8B97E601BEF55CE00CCFC4B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B8B97E661BEF55CE00CCFC4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B8B97E671BEF55CE00CCFC4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B8B97E691BEF55CE00CCFC4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = KaleidoscopeLang/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bencochran.KaleidoscopeLang;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B8B97E6A1BEF55CE00CCFC4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = KaleidoscopeLang/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bencochran.KaleidoscopeLang;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B8B97E6C1BEF55CE00CCFC4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KaleidoscopeLangTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bencochran.KaleidoscopeLangTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B8B97E6D1BEF55CE00CCFC4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KaleidoscopeLangTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bencochran.KaleidoscopeLangTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B8B97E4E1BEF55CE00CCFC4B /* Build configuration list for PBXProject "KaleidoscopeLang" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B97E661BEF55CE00CCFC4B /* Debug */,
+				B8B97E671BEF55CE00CCFC4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8B97E681BEF55CE00CCFC4B /* Build configuration list for PBXNativeTarget "KaleidoscopeLang" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B97E691BEF55CE00CCFC4B /* Debug */,
+				B8B97E6A1BEF55CE00CCFC4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B8B97E6B1BEF55CE00CCFC4B /* Build configuration list for PBXNativeTarget "KaleidoscopeLangTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B97E6C1BEF55CE00CCFC4B /* Debug */,
+				B8B97E6D1BEF55CE00CCFC4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B8B97E4B1BEF55CE00CCFC4B /* Project object */;
+}
