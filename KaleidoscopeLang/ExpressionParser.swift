@@ -88,7 +88,6 @@ private let external = %(Token.Extern) *> prototype
 ///     ::= definition
 ///     ::= external
 ///     ::= expression
-///     ::= ";"
 private let top = definition <|> external <|> expression
 
 internal let topLevelExpression = top
