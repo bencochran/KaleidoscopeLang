@@ -9,7 +9,7 @@ described in the [LLVM Kaleidoscope tutorial][kaleidoscope]. It uses
 * Um. Don’t use this for anything because that would be crazy.
 
 * Currently treats all infix binary operators as right-associative with equal
-  prescience. So math would be wrong.
+  precedence. So most math would be wrong.
 
 
 
