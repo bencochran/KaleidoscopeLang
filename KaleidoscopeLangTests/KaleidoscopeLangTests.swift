@@ -91,4 +91,33 @@ class KaleidoscopeLangTests: XCTestCase {
             )
         )
    }
+    
+    func testNumbers() {
+        XCTAssert(
+            parseTopLevelExpression("0").right!
+            ==
+            .Number(0)
+        )
+        
+        print(parseTopLevelExpression("00.00"))
+        print(parse(number, input: "00.00"))
+        
+        XCTAssert(
+            parseTopLevelExpression("00.00").right!
+            ==
+            .Number(0)
+        )
+        
+        XCTAssert(
+            parseTopLevelExpression("10.0").right!
+            ==
+            .Number(10)
+        )
+        
+        XCTAssert(
+            parseTopLevelExpression("10.01").right!
+            ==
+            .Number(10.01)
+        )
+    }
 }
