@@ -13,15 +13,42 @@ class KaleidoscopeLangTests: XCTestCase {
     func testTokenizer() {
         assertStringToTokens("a+b", [.Identifier("a"), .Character("+"), .Identifier("b")])
 
-        assertStringToTokens("def add(a b) a + b", [.Def, .Identifier("add"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"), .Identifier("a"), .Character("+"), .Identifier("b")])
+        assertStringToTokens(
+            "def add(a b) a + b",
+            [
+                .Def, .Identifier("add"),
+                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"),
+                .Identifier("a"), .Character("+"), .Identifier("b")
+            ]
+        )
 
 
-        assertStringToTokens("def add(a b)\n\ta + b", [.Def, .Identifier("add"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"), .Identifier("a"), .Character("+"), .Identifier("b")])
+        assertStringToTokens(
+            "def add(a b)\n\ta + b",
+            [
+                .Def, .Identifier("add"),
+                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"),
+                .Identifier("a"), .Character("+"), .Identifier("b")
+            ]
+        )
 
-        assertStringToTokens("extern atan2(a b)", [.Extern, .Identifier("atan2"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")])
+        assertStringToTokens(
+            "extern atan2(a b)",
+            [
+                .Extern, .Identifier("atan2"),
+                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")
+            ]
+        )
 
 
-        assertStringToTokens("\textern atan2(y x);", [.Extern, .Identifier("atan2"), .Character("("), .Identifier("y"), .Identifier("x"), .Character(")"), .EndOfStatement])
+        assertStringToTokens(
+            "\textern atan2(y x);",
+            [
+                .Extern, .Identifier("atan2"),
+                .Character("("), .Identifier("y"), .Identifier("x"), .Character(")"),
+                .EndOfStatement
+            ]
+        )
     }
     
     func testParser() {
