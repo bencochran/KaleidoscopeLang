@@ -38,7 +38,7 @@ private let number: TokenParser = Token.Number <^> Madness.number
 private let endOfStatement: TokenParser = const(.EndOfStatement) <^> %";"
 private let token = def <|> extern <|> identifier <|> number <|> character <|> endOfStatement
 
-internal let tokens: TokenArrayParser = many((token <* many(whitespace))) <* comment|? <* newline|?
+internal let tokens: TokenArrayParser = many(whitespace) *> many((token <* many(whitespace))) <* comment|? <* newline|?
 
 
 // MARK: Public

@@ -30,9 +30,15 @@ class KaleidoscopeLangTests: XCTestCase {
 
             
         XCTAssert(
-            tokenizeTopLevelExpression("extern sin(a b)").right!
+            tokenizeTopLevelExpression("extern atan2(a b)").right!
             ==
-            [.Extern, .Identifier("sin"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")]
+            [.Extern, .Identifier("atan2"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")]
+        )
+
+        XCTAssert(
+            tokenizeTopLevelExpression("\textern atan2(y x);").right!
+            ==
+            [.Extern, .Identifier("atan2"), .Character("("), .Identifier("y"), .Identifier("x"), .Character(")"), .EndOfStatement]
         )
     }
     
