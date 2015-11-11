@@ -24,7 +24,7 @@ private let paren: CharacterParser =  char("(") <|> char(")")
 // Identifiers
 private let identifierStart: CharacterParser = alpha <|> char("_")
 private let identifierFinish: CharacterParser = identifierStart <|> digit
-private let identifierCharacters: CharacterArrayParser = prepend <^> identifierStart <*> identifierFinish*
+private let identifierCharacters: CharacterArrayParser = prepend <^> identifierStart <*> many(identifierFinish)
 private let identifierString: StringParser = String.init <^> identifierCharacters
 
 // Tokens
@@ -35,7 +35,7 @@ private let extern: TokenParser = const(.Extern) <^> %"extern"
 private let number: TokenParser = Token.Number <^> Madness.number
 private let token = def <|> extern <|> identifier <|> number <|> character
 
-internal let tokens: TokenArrayParser = (token <* whitespace*)* <* newline|?
+internal let tokens: TokenArrayParser = many((token <* many(whitespace))) <* newline|?
 
 
 // MARK: Public

@@ -31,7 +31,7 @@ private let expression: ExpressionParser = fix { expression in
     let parenExpression = %(.Character("(")) *> expression <* %(.Character(")"))
     
     /// callargs ::= "(" expression* ")"
-    let callargs = %(.Character("(")) *> expression* <* %(.Character(")"))
+    let callargs = %(.Character("(")) *> many(expression) <* %(.Character(")"))
     
     /// call ::= variable callargs
     let call = { Expression.Call(callee: $0.variable!, args: $1) } <^> (lift(pair) <*> variable <*> callargs)
@@ -59,7 +59,7 @@ private let expression: ExpressionParser = fix { expression in
     let infixRight = lift(pair) <*> infixOperator <*> primary
     
     /// infix ::= primary infixRight*
-    let repackedInfix = map(id, { ArraySlice($0) }) <^> (lift(pair) <*> primary <*> infixRight*)
+    let repackedInfix = map(id, { ArraySlice($0) }) <^> (lift(pair) <*> primary <*> many(infixRight))
     let infix: ExpressionParser = collapsePackedInfix <^> repackedInfix
     
     /// expression
@@ -73,7 +73,7 @@ private func foldPrototype(name: Expression, args: [Expression]) -> Expression {
 }
 
 /// prototypeArgs ::= "(" variable* ")"
-private let prototypeArgs = %(.Character("(")) *> variable* <* %(.Character(")"))
+private let prototypeArgs = %(.Character("(")) *> many(variable) <* %(.Character(")"))
 
 /// prototype ::= variable prototypeArgs
 private let prototype = foldPrototype <^> (lift(pair) <*> variable <*> prototypeArgs)
