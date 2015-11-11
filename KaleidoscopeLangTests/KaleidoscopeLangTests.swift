@@ -90,7 +90,22 @@ class KaleidoscopeLangTests: XCTestCase {
                 )
             )
         )
-   }
+    }
+    
+    func testComments() {
+        XCTAssert(
+            tokenizeTopLevelExpression("a + b # this is addition\n").right!
+            ==
+            [Token.Identifier("a"), Token.Character("+"), Token.Identifier("b")]
+        )
+        
+        XCTAssert(
+            tokenizeTopLevelExpression("# this is only a comment\n").right!
+            ==
+            []
+        )
+    }
+    
     
     func testNumbers() {
         XCTAssert(
