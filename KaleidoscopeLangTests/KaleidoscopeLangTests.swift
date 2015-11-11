@@ -37,7 +37,7 @@ class KaleidoscopeLangTests: XCTestCase {
     }
     
     func testParser() {
-        let extern: [Token] = [.Extern, .Identifier("sin"), .Character("("), .Identifier("angle"), .Character(")")]
+        let extern: [Token] = [.Extern, .Identifier("sin"), .Character("("), .Identifier("angle"), .Character(")"), .EndOfStatement]
         XCTAssert(
             parse(topLevelExpression, input: extern).right!
             ==
@@ -47,19 +47,19 @@ class KaleidoscopeLangTests: XCTestCase {
     
     func testCombination() {
         XCTAssert(
-            parseTopLevelExpression("extern sin(angle)").right!
+            parseTopLevelExpression("extern sin(angle);").right!
             ==
             .Prototype(name: "sin", args: ["angle"])
         )
         
         XCTAssert(
-            parseTopLevelExpression("a + b").right!
+            parseTopLevelExpression("a + b;").right!
             ==
             .BinaryOperator(code: "+", left: .Variable("a"), right: .Variable("b"))
         )
 
         XCTAssert(
-            parseTopLevelExpression("a + sin(b) - c").right!
+            parseTopLevelExpression("a + sin(b) - c;").right!
             ==
             .BinaryOperator(
                 code: "+",
@@ -76,7 +76,7 @@ class KaleidoscopeLangTests: XCTestCase {
         )
         
         XCTAssert(
-            parseTopLevelExpression("def add(a b) a + b").right!
+            parseTopLevelExpression("def add(a b) a + b;").right!
             ==
             Expression.Function(
                 prototype: .Prototype(
@@ -94,9 +94,9 @@ class KaleidoscopeLangTests: XCTestCase {
     
     func testComments() {
         XCTAssert(
-            tokenizeTopLevelExpression("a + b # this is addition\n").right!
+            tokenizeTopLevelExpression("a + b; # this is addition\n").right!
             ==
-            [Token.Identifier("a"), Token.Character("+"), Token.Identifier("b")]
+            [.Identifier("a"), .Character("+"), .Identifier("b"), .EndOfStatement]
         )
         
         XCTAssert(
@@ -109,28 +109,28 @@ class KaleidoscopeLangTests: XCTestCase {
     
     func testNumbers() {
         XCTAssert(
-            parseTopLevelExpression("0").right!
+            parseTopLevelExpression("0;").right!
             ==
             .Number(0)
         )
         
-        print(parseTopLevelExpression("00.00"))
+        print(parseTopLevelExpression("00.00;"))
         print(parse(number, input: "00.00"))
         
         XCTAssert(
-            parseTopLevelExpression("00.00").right!
+            parseTopLevelExpression("00.00;").right!
             ==
             .Number(0)
         )
         
         XCTAssert(
-            parseTopLevelExpression("10.0").right!
+            parseTopLevelExpression("10.0;").right!
             ==
             .Number(10)
         )
         
         XCTAssert(
-            parseTopLevelExpression("10.01").right!
+            parseTopLevelExpression("10.01;").right!
             ==
             .Number(10.01)
         )

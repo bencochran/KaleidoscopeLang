@@ -90,14 +90,15 @@ private let external = %(Token.Extern) *> prototype
 ///     ::= expression
 private let top = definition <|> external <|> expression
 
-internal let topLevelExpression = top
+/// topLevelExpression ::= top EndOfStatement
+internal let topLevelExpression = top <* %(.EndOfStatement)
 
 // MARK: Public
 
 public func parseTopLevelExpression(string: String) -> Either<Error, Expression> {
     return tokenizeTopLevelExpression(string)
         .flatMap { (tokens: [Token]) -> Either<Error, Expression> in
-            return parse(top, input: tokens).mapLeft(Error.treeError(tokens))
+            return parse(topLevelExpression, input: tokens).mapLeft(Error.treeError(tokens))
         }
 }
 
