@@ -28,7 +28,13 @@ class KaleidoscopeLangTests: XCTestCase {
             [.Def, .Identifier("add"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"), .Identifier("a"), .Character("+"), .Identifier("b")]
         )
 
-            
+        XCTAssert(
+            tokenizeTopLevelExpression("def add(a b)\n\ta + b").right!
+            ==
+            [.Def, .Identifier("add"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"), .Identifier("a"), .Character("+"), .Identifier("b")]
+        )
+
+
         XCTAssert(
             tokenizeTopLevelExpression("extern atan2(a b)").right!
             ==

@@ -38,7 +38,11 @@ private let number: TokenParser = Token.Number <^> Madness.number
 private let endOfStatement: TokenParser = const(.EndOfStatement) <^> %";"
 private let token = def <|> extern <|> identifier <|> number <|> character <|> endOfStatement
 
-internal let tokens: TokenArrayParser = many(whitespace) *> many((token <* many(whitespace))) <* comment|? <* newline|?
+private let tokenRun: TokenArrayParser = many(token <* many(whitespace))
+private let tokenLine: TokenArrayParser = many(whitespace) *> tokenRun <* comment|?
+private let tokenLines: TokenArrayParser = flatten <^> (many(tokenLine <* newline))
+
+internal let tokens: TokenArrayParser = maybeConcat <^> tokenLines <*> tokenLine|?
 
 
 // MARK: Public
@@ -51,6 +55,14 @@ public func tokenizeTopLevelExpression(string: String) -> Either<Error, [Token]>
 
 // MARK: Private helpers
 
+private func maybeConcat<T>(value: [T]) -> [T]? -> [T] {
+    return { $0 != nil ? value + $0! : value }
+}
+
+private func flatten<T>(value: [[T]]) -> [T] {
+    // value.flatten() returns a `FlattenSequence`, so use `flatMap`
+    return value.flatMap({ $0 })
+}
 
 // Stolen from Madness internals
 private func prepend<T>(value: T) -> [T] -> [T] {
