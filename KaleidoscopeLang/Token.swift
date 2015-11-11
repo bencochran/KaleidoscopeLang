@@ -12,6 +12,7 @@ public enum Token {
     case Identifier(String)
     case Number(Double)
     case Character(Swift.Character)
+    case EndOfStatement
 }
 
 public extension Token {
@@ -46,6 +47,7 @@ public func == (lhs: Token, rhs: Token) -> Bool {
     case let (.Identifier(l), .Identifier(r)): return l == r
     case let (.Number(l), .Number(r)): return l == r
     case let (.Character(l), .Character(r)): return l == r
+    case (.EndOfStatement, .EndOfStatement): return true
     default: return false
     }
 }
