@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B88DBAC11BF337A300AC3BB5 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DBABF1BF3377600AC3BB5 /* Assertions.swift */; };
 		B8B97E581BEF55CE00CCFC4B /* KaleidoscopeLang.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8B97E5F1BEF55CE00CCFC4B /* KaleidoscopeLang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */; };
 		B8B97E641BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B88DBABF1BF3377600AC3BB5 /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
 		B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KaleidoscopeLang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KaleidoscopeLang.h; sourceTree = "<group>"; };
 		B8B97E591BEF55CE00CCFC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = KaleidoscopeLang/Info.plist; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */,
+				B88DBABF1BF3377600AC3BB5 /* Assertions.swift */,
 				B8B97E651BEF55CE00CCFC4B /* Info.plist */,
 			);
 			path = KaleidoscopeLangTests;
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88DBAC11BF337A300AC3BB5 /* Assertions.swift in Sources */,
 				B8B97E641BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
