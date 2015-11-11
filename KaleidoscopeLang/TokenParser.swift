@@ -20,6 +20,8 @@ private let upper: CharacterParser = oneOf("A"..."Z")
 private let alpha: CharacterParser = lower <|> upper
 private let op: CharacterParser = char("+") <|> char("-") <|> char("*") <|> char("/")
 private let paren: CharacterParser =  char("(") <|> char(")")
+private let hash: CharacterParser =  char("#")
+private let comment: CharacterArrayParser = hash *> many(not(newline) *> any)
 
 // Identifiers
 private let identifierStart: CharacterParser = alpha <|> char("_")
@@ -35,7 +37,7 @@ private let extern: TokenParser = const(.Extern) <^> %"extern"
 private let number: TokenParser = Token.Number <^> Madness.number
 private let token = def <|> extern <|> identifier <|> number <|> character
 
-internal let tokens: TokenArrayParser = many((token <* many(whitespace))) <* newline|?
+internal let tokens: TokenArrayParser = many((token <* many(whitespace))) <* comment|? <* newline|?
 
 
 // MARK: Public
