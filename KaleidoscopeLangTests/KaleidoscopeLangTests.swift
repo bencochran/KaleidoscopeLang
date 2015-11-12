@@ -7,72 +7,94 @@
 //
 
 import XCTest
-import Madness
 @testable import KaleidoscopeLang
 
-
-// These should be better. (e.g. Don’t force-unwrap the result & pull out common
-// assertion patterns). And the the coverage should be higher.
-
-class KaleidoscopeLangTests: XCTestCase {
-    func testTokenizer() {
-        XCTAssert(
-            tokenizeTopLevelExpression("a+b").right!
-            ==
-            [.Identifier("a"), .Character("+"), .Identifier("b")]
+class TokenParserTests: XCTestCase {
+    func testIdentifier() {
+        assertMatched(identifierToken, "a".characters)
+        assertMatched(identifierToken, "some".characters)
+        assertMatched(identifierToken, "_some".characters)
+        assertMatched(identifierToken, "__some_".characters)
+        assertMatched(identifierToken, "__some".characters)
+        assertUnmatched(identifierToken, "2name".characters)
+        assertUnmatched(identifierToken, "2".characters)
+    }
+    
+    func testSimpleExpressions() {
+        assertStringToTokens("a+b", [.Identifier("a"), .Character("+"), .Identifier("b")])
+        
+        assertStringToTokens(
+            "def add(a b) a + b",
+            [
+                .Def, .Identifier("add"),
+                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"),
+                .Identifier("a"), .Character("+"), .Identifier("b")
+            ]
         )
         
-        XCTAssert(
-            tokenizeTopLevelExpression("def add(a b) a + b").right!
-            ==
-            [.Def, .Identifier("add"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"), .Identifier("a"), .Character("+"), .Identifier("b")]
-        )
-
-        XCTAssert(
-            tokenizeTopLevelExpression("def add(a b)\n\ta + b").right!
-            ==
-            [.Def, .Identifier("add"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"), .Identifier("a"), .Character("+"), .Identifier("b")]
-        )
-
-
-        XCTAssert(
-            tokenizeTopLevelExpression("extern atan2(a b)").right!
-            ==
-            [.Extern, .Identifier("atan2"), .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")]
-        )
-
-        XCTAssert(
-            tokenizeTopLevelExpression("\textern atan2(y x);").right!
-            ==
-            [.Extern, .Identifier("atan2"), .Character("("), .Identifier("y"), .Identifier("x"), .Character(")"), .EndOfStatement]
+        assertStringToTokens(
+            "extern atan2(a b)",
+            [
+                .Extern, .Identifier("atan2"),
+                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")
+            ]
         )
     }
     
+    func testMultilineExpressions() {
+        assertStringToTokens(
+            "def add(a b)\n\ta + b",
+            [
+                .Def, .Identifier("add"),
+                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")"),
+                .Identifier("a"), .Character("+"), .Identifier("b")
+            ]
+        )
+    }
+    
+    func testWhitespaceAtStart() {
+        assertStringToTokens(
+            "\textern atan2(y x);",
+            [
+                .Extern, .Identifier("atan2"),
+                .Character("("), .Identifier("y"), .Identifier("x"), .Character(")"),
+                .EndOfStatement
+            ]
+        )
+    }
+}
+
+class TokenToExpressionParserTests: XCTestCase {
     func testParser() {
-        let extern: [Token] = [.Extern, .Identifier("sin"), .Character("("), .Identifier("angle"), .Character(")"), .EndOfStatement]
-        XCTAssert(
-            parse(topLevelExpression, input: extern).right!
-            ==
+        assertTokensToExpression(
+            [.Extern, .Identifier("sin"), .Character("("), .Identifier("angle"), .Character(")"), .EndOfStatement],
+            .Prototype(name: "sin", args: ["angle"])
+        )
+    }
+}
+
+class StringToExpressionParserTests: XCTestCase {
+    func testExtern() {
+        assertStringToExpression(
+            "extern sin(angle);",
             .Prototype(name: "sin", args: ["angle"])
         )
     }
     
-    func testCombination() {
-        XCTAssert(
-            parseTopLevelExpression("extern sin(angle);").right!
-            ==
-            .Prototype(name: "sin", args: ["angle"])
+    func testBinaryOperator() {
+        assertStringToExpression(
+            "a + b;",
+            .BinaryOperator(
+                code: "+",
+                left: .Variable("a"),
+                right: .Variable("b")
+            )
         )
-        
-        XCTAssert(
-            parseTopLevelExpression("a + b;").right!
-            ==
-            .BinaryOperator(code: "+", left: .Variable("a"), right: .Variable("b"))
-        )
-
-        XCTAssert(
-            parseTopLevelExpression("a + sin(b) - c;").right!
-            ==
+    }
+    
+    func testComplexBinaryOperator() {
+        assertStringToExpression(
+            "a + sin(b) - c;",
             .BinaryOperator(
                 code: "+",
                 left: .Variable("a"),
@@ -86,11 +108,12 @@ class KaleidoscopeLangTests: XCTestCase {
                 )
             )
         )
-        
-        XCTAssert(
-            parseTopLevelExpression("def add(a b) a + b;").right!
-            ==
-            Expression.Function(
+    }
+    
+    func testDefinition() {
+        assertStringToExpression(
+            "def add(a b) a + b;",
+            .Function(
                 prototype: .Prototype(
                     name: "add",
                     args: [ "a", "b" ]
@@ -105,46 +128,18 @@ class KaleidoscopeLangTests: XCTestCase {
     }
     
     func testComments() {
-        XCTAssert(
-            tokenizeTopLevelExpression("a + b; # this is addition\n").right!
-            ==
+        assertStringToTokens(
+            "a + b; # this is addition\n",
             [.Identifier("a"), .Character("+"), .Identifier("b"), .EndOfStatement]
         )
         
-        XCTAssert(
-            tokenizeTopLevelExpression("# this is only a comment\n").right!
-            ==
-            []
-        )
+        assertStringToTokens("# this is only a comment\n", [])
     }
     
-    
-    func testNumbers() {
-        XCTAssert(
-            parseTopLevelExpression("0;").right!
-            ==
-            .Number(0)
-        )
-        
-        print(parseTopLevelExpression("00.00;"))
-        print(parse(number, input: "00.00"))
-        
-        XCTAssert(
-            parseTopLevelExpression("00.00;").right!
-            ==
-            .Number(0)
-        )
-        
-        XCTAssert(
-            parseTopLevelExpression("10.0;").right!
-            ==
-            .Number(10)
-        )
-        
-        XCTAssert(
-            parseTopLevelExpression("10.01;").right!
-            ==
-            .Number(10.01)
-        )
+    func testTopLevelNumbers() {
+        assertStringToExpression("0;", .Number(0))
+        assertStringToExpression("00.00;", .Number(0))
+        assertStringToExpression("10.0;", .Number(10))
+        assertStringToExpression("10.01;", .Number(10.01))
     }
 }
