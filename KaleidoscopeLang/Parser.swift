@@ -33,7 +33,7 @@ private let expression: ExpressionParser = fix { expression in
     let callargs = %(.Character("(")) *> many(expression) <* %(.Character(")"))
     
     /// call ::= Identifier callargs
-    let call = Expression.Call <^> (lift(pair) <*> identifier <*> callargs)
+    let call = Expression.Call <^> ( lift(pair) <*> identifier <*> callargs )
     
     /// primary
     ///     ::= call
@@ -58,7 +58,7 @@ private let expression: ExpressionParser = fix { expression in
     let infixRight = lift(pair) <*> infixOperator <*> primary
     
     /// infix ::= primary infixRight*
-    let repackedInfix = map(id, ArraySlice.init) <^> (lift(pair) <*> primary <*> many(infixRight))
+    let repackedInfix = map(id, ArraySlice.init) <^> ( lift(pair) <*> primary <*> many(infixRight) )
     let infix: ExpressionParser = collapsePackedInfix <^> repackedInfix
     
     /// expression
@@ -71,10 +71,10 @@ private let expression: ExpressionParser = fix { expression in
 private let prototypeArgs = %(.Character("(")) *> many(identifier) <* %(.Character(")"))
 
 /// prototype ::= Identifier prototypeArgs
-private let prototype = Expression.Prototype <^> (lift(pair) <*> identifier <*> prototypeArgs)
+private let prototype = Expression.Prototype <^> ( lift(pair) <*> identifier <*> prototypeArgs )
 
 /// definition ::= "def" prototype expression
-private let definition: ExpressionParser = Expression.Function <^> (%(Token.Def) *> lift(pair) <*> prototype <*> expression)
+private let definition: ExpressionParser = Expression.Function <^> ( %(Token.Def) *> lift(pair) <*> prototype <*> expression )
 
 /// external ::= "extern" prototype
 private let external = %(Token.Extern) *> prototype
