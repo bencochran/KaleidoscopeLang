@@ -12,20 +12,19 @@ import Either
 
 typealias ExpressionParser = Parser<[Token], Expression>.Function
 
-// MARK: Token Types
+// MARK: Token unwrappers
 
-private let isNumber: Token -> Bool = { $0.number != nil }
-private let isIdentifier: Token -> Bool = { $0.identifier != nil }
-private let isOperator: Token -> Bool = { $0.character != nil }
+private let identifier: Parser<[Token], String>.Function = attempt { $0.identifier }
+private let double: Parser<[Token], Double>.Function = attempt { $0.number }
 
 // MARK: Grammar
 
-/// variable ::= Identifier
-private let variable: ExpressionParser = { Expression.Variable($0.identifier!) } <^> satisfy(isIdentifier)
-
 private let expression: ExpressionParser = fix { expression in
+    /// variable ::= Identifier
+    let variable: ExpressionParser = Expression.Variable <^> identifier
+    
     /// number ::= Number
-    let number: ExpressionParser = { Expression.Number($0.number!) } <^> satisfy(isNumber)
+    let number: ExpressionParser = Expression.Number <^> double
     
     /// parenExpression ::= "(" expression ")"
     let parenExpression = %(.Character("(")) *> expression <* %(.Character(")"))
@@ -33,8 +32,8 @@ private let expression: ExpressionParser = fix { expression in
     /// callargs ::= "(" expression* ")"
     let callargs = %(.Character("(")) *> many(expression) <* %(.Character(")"))
     
-    /// call ::= variable callargs
-    let call = { Expression.Call(callee: $0.variable!, args: $1) } <^> (lift(pair) <*> variable <*> callargs)
+    /// call ::= Identifier callargs
+    let call = Expression.Call <^> (lift(pair) <*> identifier <*> callargs)
     
     /// primary
     ///     ::= call
@@ -68,15 +67,11 @@ private let expression: ExpressionParser = fix { expression in
     return infix <|> primary
 }
 
-private func foldPrototype(name: Expression, args: [Expression]) -> Expression {
-    return Expression.Prototype(name: name.variable!, args: args.map({$0.variable!}))
-}
+/// prototypeArgs ::= "(" Identifier* ")"
+private let prototypeArgs = %(.Character("(")) *> many(identifier) <* %(.Character(")"))
 
-/// prototypeArgs ::= "(" variable* ")"
-private let prototypeArgs = %(.Character("(")) *> many(variable) <* %(.Character(")"))
-
-/// prototype ::= variable prototypeArgs
-private let prototype = foldPrototype <^> (lift(pair) <*> variable <*> prototypeArgs)
+/// prototype ::= Identifier prototypeArgs
+private let prototype = Expression.Prototype <^> (lift(pair) <*> identifier <*> prototypeArgs)
 
 /// definition ::= "def" prototype expression
 private let definition: ExpressionParser = Expression.Function <^> (%(Token.Def) *> lift(pair) <*> prototype <*> expression)
