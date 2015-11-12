@@ -10,6 +10,16 @@ import XCTest
 @testable import KaleidoscopeLang
 
 class KaleidoscopeLangTests: XCTestCase {
+    func testIdentifierTokenizer() {
+        assertMatched(identifierToken, "a".characters)
+        assertMatched(identifierToken, "some".characters)
+        assertMatched(identifierToken, "_some".characters)
+        assertMatched(identifierToken, "__some_".characters)
+        assertMatched(identifierToken, "__some".characters)
+        assertUnmatched(identifierToken, "2name".characters)
+        assertUnmatched(identifierToken, "2".characters)
+    }
+
     func testTokenizer() {
         assertStringToTokens("a+b", [.Identifier("a"), .Character("+"), .Identifier("b")])
 
