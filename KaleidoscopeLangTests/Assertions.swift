@@ -26,6 +26,25 @@ func assert<T>(left: T?, _ match: (T, T) -> Bool, _ right: T?, message: String =
     }
 }
 
+func assertMatched<C: CollectionType, T>(parser: Parser<C,T>.Function, _ input: C, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
+    switch parse(parser, input: input) {
+    case .Left(_):
+        XCTFail("should have matched \(input). " + message, file: file, line: line)
+    case .Right(_):
+        break;
+    }
+}
+
+
+func assertUnmatched<C: CollectionType, T>(parser: Parser<C,T>.Function, _ input: C, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
+    switch parse(parser, input: input) {
+    case .Left(_):
+        break
+    case .Right(_):
+        XCTFail("should not have matched \(input). " + message, file: file, line: line)
+    }
+}
+
 func assertStringToTokens(string: String, _ tokens: [Token], message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
     let parsed = tokenizeTopLevelExpression(string)
     assert(parsed.right, ==, tokens, message: message, file: file, line: line)
