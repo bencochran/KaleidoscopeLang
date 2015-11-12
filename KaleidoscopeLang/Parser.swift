@@ -58,7 +58,7 @@ private let expression: ExpressionParser = fix { expression in
     let infixRight = lift(pair) <*> infixOperator <*> primary
     
     /// infix ::= primary infixRight*
-    let repackedInfix = map(id, { ArraySlice($0) }) <^> (lift(pair) <*> primary <*> many(infixRight))
+    let repackedInfix = map(id, ArraySlice.init) <^> (lift(pair) <*> primary <*> many(infixRight))
     let infix: ExpressionParser = collapsePackedInfix <^> repackedInfix
     
     /// expression
