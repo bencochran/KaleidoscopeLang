@@ -24,14 +24,12 @@ private let hash: CharacterParser =  char("#")
 private let comment: CharacterArrayParser = hash *> many(not(newline) *> any)
 
 // Identifiers
-private let identifierStart: CharacterParser = alpha <|> char("_")
-private let identifierFinish: CharacterParser = identifierStart <|> digit
-private let identifierCharacters: CharacterArrayParser = prepend <^> identifierStart <*> many(identifierFinish)
+private let identifierCharacters: CharacterArrayParser = not(digit) *> some(alpha <|> char("_") <|> digit)
 private let identifierString: StringParser = String.init <^> identifierCharacters
 
 // Tokens
 internal let identifierToken: TokenParser = Token.Identifier <^> identifierString
-internal let characterToken: TokenParser = Token.Character <^> (op <|> paren)
+internal let characterToken: TokenParser = Token.Character <^> ( op <|> paren )
 internal let defToken: TokenParser = const(.Def) <^> %"def"
 internal let externToken: TokenParser = const(.Extern) <^> %"extern"
 internal let numberToken: TokenParser = Token.Number <^> Madness.number
@@ -40,7 +38,7 @@ internal let token = defToken <|> externToken <|> identifierToken <|> numberToke
 
 private let tokenRun: TokenArrayParser = many(token <* many(whitespace))
 private let tokenLine: TokenArrayParser = many(whitespace) *> tokenRun <* comment|?
-private let tokenLines: TokenArrayParser = flatten <^> (many(tokenLine <* newline))
+private let tokenLines: TokenArrayParser = flatten <^> ( many(tokenLine <* newline) )
 
 internal let tokens: TokenArrayParser = maybeConcat <^> tokenLines <*> tokenLine|?
 
@@ -67,8 +65,4 @@ private func flatten<T>(value: [[T]]) -> [T] {
 // Stolen from Madness internals
 private func prepend<T>(value: T) -> [T] -> [T] {
     return { [value] + $0 }
-}
-
-private func oneOf<I: IntervalType where I.Bound == Character>(interval: I) -> CharacterParser {
-    return satisfy { interval.contains($0) }
 }
