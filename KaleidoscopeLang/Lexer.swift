@@ -24,9 +24,7 @@ private let hash: CharacterParser =  char("#")
 private let comment: CharacterArrayParser = hash *> many(not(newline) *> any)
 
 // Identifiers
-private let identifierStart: CharacterParser = alpha <|> char("_")
-private let identifierFinish: CharacterParser = identifierStart <|> digit
-private let identifierCharacters: CharacterArrayParser = prepend <^> identifierStart <*> many(identifierFinish)
+private let identifierCharacters: CharacterArrayParser = not(digit) *> some(alpha <|> char("_") <|> digit)
 private let identifierString: StringParser = String.init <^> identifierCharacters
 
 // Tokens
