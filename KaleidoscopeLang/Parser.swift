@@ -48,10 +48,10 @@ private let expression: ExpressionParser = fix { expression in
     ///     ::= "*"
     ///     ::= "/"
     let infixOperator: Parser<[Token], Token>.Function = oneOf([
-        Token.Character("+"),
-        Token.Character("-"),
-        Token.Character("*"),
-        Token.Character("/")
+        .Character("+"),
+        .Character("-"),
+        .Character("*"),
+        .Character("/")
     ])
     
     /// infixRight ::= infixOperator primary
