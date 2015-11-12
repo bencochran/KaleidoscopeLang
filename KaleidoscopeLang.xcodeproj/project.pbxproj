@@ -12,12 +12,12 @@
 		B8B97E5F1BEF55CE00CCFC4B /* KaleidoscopeLang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */; };
 		B8B97E641BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */; };
 		B8B97E6F1BEF56B800CCFC4B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E6E1BEF56B800CCFC4B /* Token.swift */; };
-		B8B97E711BEF56E900CCFC4B /* TokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E701BEF56E900CCFC4B /* TokenParser.swift */; };
+		B8B97E711BEF56E900CCFC4B /* Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E701BEF56E900CCFC4B /* Lexer.swift */; };
 		B8B97E751BEF58DB00CCFC4B /* Either.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B97E721BEF58DB00CCFC4B /* Either.framework */; };
 		B8B97E761BEF58DB00CCFC4B /* Madness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B97E731BEF58DB00CCFC4B /* Madness.framework */; };
 		B8B97E771BEF58DB00CCFC4B /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B97E741BEF58DB00CCFC4B /* Prelude.framework */; };
 		B8B97E7A1BEF597A00CCFC4B /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E791BEF597A00CCFC4B /* Expression.swift */; };
-		B8B97E7C1BEF59AF00CCFC4B /* ExpressionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E7B1BEF59AF00CCFC4B /* ExpressionParser.swift */; };
+		B8B97E7C1BEF59AF00CCFC4B /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E7B1BEF59AF00CCFC4B /* Parser.swift */; };
 		B8B97E7E1BEF5E9200CCFC4B /* Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E7D1BEF5E9200CCFC4B /* Tuple.swift */; };
 		B8B97E801BEF5F8E00CCFC4B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E7F1BEF5F8E00CCFC4B /* Error.swift */; };
 		B8B97E821BEF602400CCFC4B /* EitherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E811BEF602400CCFC4B /* EitherExtensions.swift */; };
@@ -45,12 +45,12 @@
 		B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaleidoscopeLangTests.swift; sourceTree = "<group>"; };
 		B8B97E651BEF55CE00CCFC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8B97E6E1BEF56B800CCFC4B /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		B8B97E701BEF56E900CCFC4B /* TokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenParser.swift; sourceTree = "<group>"; };
+		B8B97E701BEF56E900CCFC4B /* Lexer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lexer.swift; sourceTree = "<group>"; };
 		B8B97E721BEF58DB00CCFC4B /* Either.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Either.framework; path = Carthage/Build/Mac/Either.framework; sourceTree = "<group>"; };
 		B8B97E731BEF58DB00CCFC4B /* Madness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Madness.framework; path = Carthage/Build/Mac/Madness.framework; sourceTree = "<group>"; };
 		B8B97E741BEF58DB00CCFC4B /* Prelude.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prelude.framework; path = Carthage/Build/Mac/Prelude.framework; sourceTree = "<group>"; };
 		B8B97E791BEF597A00CCFC4B /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
-		B8B97E7B1BEF59AF00CCFC4B /* ExpressionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionParser.swift; sourceTree = "<group>"; };
+		B8B97E7B1BEF59AF00CCFC4B /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		B8B97E7D1BEF5E9200CCFC4B /* Tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuple.swift; sourceTree = "<group>"; };
 		B8B97E7F1BEF5F8E00CCFC4B /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		B8B97E811BEF602400CCFC4B /* EitherExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EitherExtensions.swift; sourceTree = "<group>"; };
@@ -103,10 +103,10 @@
 			isa = PBXGroup;
 			children = (
 				B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */,
-				B8B97E791BEF597A00CCFC4B /* Expression.swift */,
-				B8B97E7B1BEF59AF00CCFC4B /* ExpressionParser.swift */,
 				B8B97E6E1BEF56B800CCFC4B /* Token.swift */,
-				B8B97E701BEF56E900CCFC4B /* TokenParser.swift */,
+				B8B97E701BEF56E900CCFC4B /* Lexer.swift */,
+				B8B97E791BEF597A00CCFC4B /* Expression.swift */,
+				B8B97E7B1BEF59AF00CCFC4B /* Parser.swift */,
 				B8B97E7F1BEF5F8E00CCFC4B /* Error.swift */,
 				B8B97E7D1BEF5E9200CCFC4B /* Tuple.swift */,
 				B8B97E811BEF602400CCFC4B /* EitherExtensions.swift */,
@@ -245,9 +245,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B97E711BEF56E900CCFC4B /* TokenParser.swift in Sources */,
+				B8B97E711BEF56E900CCFC4B /* Lexer.swift in Sources */,
 				B8B97E6F1BEF56B800CCFC4B /* Token.swift in Sources */,
-				B8B97E7C1BEF59AF00CCFC4B /* ExpressionParser.swift in Sources */,
+				B8B97E7C1BEF59AF00CCFC4B /* Parser.swift in Sources */,
 				B8B97E821BEF602400CCFC4B /* EitherExtensions.swift in Sources */,
 				B8B97E7A1BEF597A00CCFC4B /* Expression.swift in Sources */,
 				B8B97E801BEF5F8E00CCFC4B /* Error.swift in Sources */,

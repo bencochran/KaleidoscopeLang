@@ -46,16 +46,16 @@ func assertUnmatched<C: CollectionType, T>(parser: Parser<C,T>.Function, _ input
 }
 
 func assertStringToTokens(string: String, _ tokens: [Token], message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
-    let parsed = tokenizeTopLevelExpression(string)
+    let parsed = lex(string)
     assert(parsed.right, ==, tokens, message: message, file: file, line: line)
 }
 
 func assertTokensToExpression(tokens: [Token], _ expression: Expression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
-    let parsed = parse(topLevelExpression, input: tokens)
+    let parsed = parse(tokens)
     assert(parsed.right, ==, expression, message: message, file: file, line: line)
 }
 
 func assertStringToExpression(string: String, _ expression: Expression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
-    let parsed = parseTopLevelExpression(string)
+    let parsed = parse(string)
     assert(parsed.right, ==, expression, message: message, file: file, line: line)
 }
