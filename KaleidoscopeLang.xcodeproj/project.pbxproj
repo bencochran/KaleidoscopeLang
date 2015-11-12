@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B88DBAC11BF337A300AC3BB5 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DBABF1BF3377600AC3BB5 /* Assertions.swift */; };
+		B88DBAC31BF4292400AC3BB5 /* Combinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DBAC21BF4292400AC3BB5 /* Combinators.swift */; };
 		B8B97E581BEF55CE00CCFC4B /* KaleidoscopeLang.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8B97E5F1BEF55CE00CCFC4B /* KaleidoscopeLang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */; };
 		B8B97E641BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B97E631BEF55CE00CCFC4B /* KaleidoscopeLangTests.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		B88DBABF1BF3377600AC3BB5 /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
+		B88DBAC21BF4292400AC3BB5 /* Combinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinators.swift; sourceTree = "<group>"; };
 		B8B97E541BEF55CE00CCFC4B /* KaleidoscopeLang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KaleidoscopeLang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B97E571BEF55CE00CCFC4B /* KaleidoscopeLang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KaleidoscopeLang.h; sourceTree = "<group>"; };
 		B8B97E591BEF55CE00CCFC4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = KaleidoscopeLang/Info.plist; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				B8B97E7F1BEF5F8E00CCFC4B /* Error.swift */,
 				B8B97E7D1BEF5E9200CCFC4B /* Tuple.swift */,
 				B8B97E811BEF602400CCFC4B /* EitherExtensions.swift */,
+				B88DBAC21BF4292400AC3BB5 /* Combinators.swift */,
 				B8B97E781BEF58F900CCFC4B /* Supporting Files */,
 			);
 			path = KaleidoscopeLang;
@@ -250,6 +253,7 @@
 				B8B97E7C1BEF59AF00CCFC4B /* Parser.swift in Sources */,
 				B8B97E821BEF602400CCFC4B /* EitherExtensions.swift in Sources */,
 				B8B97E7A1BEF597A00CCFC4B /* Expression.swift in Sources */,
+				B88DBAC31BF4292400AC3BB5 /* Combinators.swift in Sources */,
 				B8B97E801BEF5F8E00CCFC4B /* Error.swift in Sources */,
 				B8B97E7E1BEF5E9200CCFC4B /* Tuple.swift in Sources */,
 			);

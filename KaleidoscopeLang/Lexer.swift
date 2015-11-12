@@ -66,7 +66,3 @@ private func flatten<T>(value: [[T]]) -> [T] {
 private func prepend<T>(value: T) -> [T] -> [T] {
     return { [value] + $0 }
 }
-
-private func oneOf<I: IntervalType where I.Bound == Character>(interval: I) -> CharacterParser {
-    return satisfy { interval.contains($0) }
-}
