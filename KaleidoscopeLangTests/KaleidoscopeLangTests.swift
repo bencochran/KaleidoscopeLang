@@ -9,8 +9,8 @@
 import XCTest
 @testable import KaleidoscopeLang
 
-class KaleidoscopeLangTests: XCTestCase {
-    func testIdentifierTokenizer() {
+class TokenParserTests: XCTestCase {
+    func testIdentifier() {
         assertMatched(identifierToken, "a".characters)
         assertMatched(identifierToken, "some".characters)
         assertMatched(identifierToken, "_some".characters)
@@ -19,10 +19,10 @@ class KaleidoscopeLangTests: XCTestCase {
         assertUnmatched(identifierToken, "2name".characters)
         assertUnmatched(identifierToken, "2".characters)
     }
-
-    func testTokenizer() {
+    
+    func testSimpleExpressions() {
         assertStringToTokens("a+b", [.Identifier("a"), .Character("+"), .Identifier("b")])
-
+        
         assertStringToTokens(
             "def add(a b) a + b",
             [
@@ -31,8 +31,17 @@ class KaleidoscopeLangTests: XCTestCase {
                 .Identifier("a"), .Character("+"), .Identifier("b")
             ]
         )
-
-
+        
+        assertStringToTokens(
+            "extern atan2(a b)",
+            [
+                .Extern, .Identifier("atan2"),
+                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")
+            ]
+        )
+    }
+    
+    func testMultilineExpressions() {
         assertStringToTokens(
             "def add(a b)\n\ta + b",
             [
@@ -41,16 +50,9 @@ class KaleidoscopeLangTests: XCTestCase {
                 .Identifier("a"), .Character("+"), .Identifier("b")
             ]
         )
-
-        assertStringToTokens(
-            "extern atan2(a b)",
-            [
-                .Extern, .Identifier("atan2"),
-                .Character("("), .Identifier("a"), .Identifier("b"), .Character(")")
-            ]
-        )
-
-
+    }
+    
+    func testWhitespaceAtStart() {
         assertStringToTokens(
             "\textern atan2(y x);",
             [
@@ -60,20 +62,26 @@ class KaleidoscopeLangTests: XCTestCase {
             ]
         )
     }
-    
+}
+
+class TokenToExpressionParserTests: XCTestCase {
     func testParser() {
         assertTokensToExpression(
             [.Extern, .Identifier("sin"), .Character("("), .Identifier("angle"), .Character(")"), .EndOfStatement],
             .Prototype(name: "sin", args: ["angle"])
         )
     }
-    
-    func testCombination() {
+}
+
+class StringToExpressionParserTests: XCTestCase {
+    func testExtern() {
         assertStringToExpression(
             "extern sin(angle);",
             .Prototype(name: "sin", args: ["angle"])
         )
-        
+    }
+    
+    func testBinaryOperator() {
         assertStringToExpression(
             "a + b;",
             .BinaryOperator(
@@ -82,7 +90,9 @@ class KaleidoscopeLangTests: XCTestCase {
                 right: .Variable("b")
             )
         )
-
+    }
+    
+    func testComplexBinaryOperator() {
         assertStringToExpression(
             "a + sin(b) - c;",
             .BinaryOperator(
@@ -98,7 +108,9 @@ class KaleidoscopeLangTests: XCTestCase {
                 )
             )
         )
-        
+    }
+    
+    func testDefinition() {
         assertStringToExpression(
             "def add(a b) a + b;",
             .Function(
@@ -124,8 +136,7 @@ class KaleidoscopeLangTests: XCTestCase {
         assertStringToTokens("# this is only a comment\n", [])
     }
     
-    
-    func testNumbers() {
+    func testTopLevelNumbers() {
         assertStringToExpression("0;", .Number(0))
         assertStringToExpression("00.00;", .Number(0))
         assertStringToExpression("10.0;", .Number(10))
