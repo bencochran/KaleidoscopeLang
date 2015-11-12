@@ -100,16 +100,12 @@ public func parse(string: String) -> Either<Error, Expression> {
 
 // MARK: Infix Helpers
 
-private extension Expression {
-    static func rightAssociativeBinaryOperator(code: Character, left: Expression)(right: Expression) -> Expression {
-        return .BinaryOperator(code: code, left: left, right: right)
-    }
-}
-
 private func collapsePackedInfix(binop: (Expression, ArraySlice<(Token, Expression)>)) -> Expression {
+    // Recursion base
     guard let rightHalf = binop.1.first else { return binop.0 }
+    
     let code = rightHalf.0.character!
     let rest = (rightHalf.1, binop.1.dropFirst())
     let left = binop.0
-    return Expression.rightAssociativeBinaryOperator(code, left: left)(right: collapsePackedInfix(rest))
+    return .BinaryOperator(code: code, left: left, right: collapsePackedInfix(rest))
 }
