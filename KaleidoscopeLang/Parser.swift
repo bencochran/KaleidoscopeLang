@@ -1,5 +1,5 @@
 //
-//  ExpressionParser.swift
+//  Parser.swift
 //  KaleidoscopeLang
 //
 //  Created by Ben Cochran on 11/8/15.
@@ -95,11 +95,12 @@ internal let topLevelExpression = top <* %(.EndOfStatement)
 
 // MARK: Public
 
-public func parseTopLevelExpression(string: String) -> Either<Error, Expression> {
-    return tokenizeTopLevelExpression(string)
-        .flatMap { (tokens: [Token]) -> Either<Error, Expression> in
-            return parse(topLevelExpression, input: tokens).mapLeft(Error.treeError(tokens))
-        }
+public func parse(tokens: [Token]) -> Either<Error, Expression> {
+    return parse(topLevelExpression, input: tokens).mapLeft(Error.treeError(tokens))
+}
+
+public func parse(string: String) -> Either<Error, Expression> {
+    return lex(string) >>- parse
 }
 
 // MARK: Infix Helpers

@@ -9,7 +9,7 @@
 import XCTest
 @testable import KaleidoscopeLang
 
-class TokenParserTests: XCTestCase {
+class LexerTests: XCTestCase {
     func testIdentifier() {
         assertMatched(identifierToken, "a".characters)
         assertMatched(identifierToken, "some".characters)
@@ -64,7 +64,7 @@ class TokenParserTests: XCTestCase {
     }
 }
 
-class TokenToExpressionParserTests: XCTestCase {
+class ParserTests: XCTestCase {
     func testParser() {
         assertTokensToExpression(
             [.Extern, .Identifier("sin"), .Character("("), .Identifier("angle"), .Character(")"), .EndOfStatement],
@@ -73,7 +73,7 @@ class TokenToExpressionParserTests: XCTestCase {
     }
 }
 
-class StringToExpressionParserTests: XCTestCase {
+class CombinedTests: XCTestCase {
     func testExtern() {
         assertStringToExpression(
             "extern sin(angle);",

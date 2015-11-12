@@ -1,5 +1,5 @@
 //
-//  TokenParser.swift
+//  Lexer.swift
 //  KaleidoscopeLang
 //
 //  Created by Ben Cochran on 11/8/15.
@@ -48,7 +48,7 @@ internal let tokens: TokenArrayParser = maybeConcat <^> tokenLines <*> tokenLine
 // MARK: Public
 
 
-public func tokenizeTopLevelExpression(string: String) -> Either<Error, [Token]> {
+public func lex(string: String) -> Either<Error, [Token]> {
     return parse(tokens, input: string).mapLeft(Error.TokenizeError)
 }
 
