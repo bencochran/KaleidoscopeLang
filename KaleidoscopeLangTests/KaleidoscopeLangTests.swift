@@ -66,62 +66,62 @@ class LexerTests: XCTestCase {
 
 class ParserTests: XCTestCase {
     func testParser() {
-        assertTokensToExpression(
+        assertTokensToTopLevelExpression(
             [.Extern, .Identifier("sin"), .Character("("), .Identifier("angle"), .Character(")"), .EndOfStatement],
-            .Prototype(name: "sin", args: ["angle"])
+            PrototypeExpression(name: "sin", args: ["angle"])
         )
     }
 }
 
 class CombinedTests: XCTestCase {
     func testExtern() {
-        assertStringToExpression(
+        assertStringToTopLevelExpression(
             "extern sin(angle);",
-            .Prototype(name: "sin", args: ["angle"])
+            PrototypeExpression(name: "sin", args: ["angle"])
         )
     }
     
     func testBinaryOperator() {
-        assertStringToExpression(
-            "a + b;",
-            .BinaryOperator(
+        assertStringToValueExpression(
+            "a + b",
+            BinaryOperatorExpression(
                 code: "+",
-                left: .Variable("a"),
-                right: .Variable("b")
+                left: VariableExpression("a"),
+                right: VariableExpression("b")
             )
         )
     }
     
     func testComplexBinaryOperator() {
-        assertStringToExpression(
-            "a + sin(b) - c;",
-            .BinaryOperator(
+        assertStringToValueExpression(
+            "a + sin(b) - c",
+            BinaryOperatorExpression(
                 code: "+",
-                left: .Variable("a"),
-                right: .BinaryOperator(
+                left: VariableExpression("a"),
+                right: BinaryOperatorExpression(
                     code: "-",
-                    left: .Call(
+                    left: CallExpression(
                         callee: "sin",
-                        args: [ .Variable("b") ]
+                        args: [ VariableExpression("b") ]
                     ),
-                    right: .Variable("c")
+                    right: VariableExpression("c")
                 )
             )
         )
     }
     
     func testDefinition() {
-        assertStringToExpression(
+        assertStringToTopLevelExpression(
             "def add(a b) a + b;",
-            .Function(
-                prototype: .Prototype(
+            FunctionExpression(
+                prototype: PrototypeExpression(
                     name: "add",
                     args: [ "a", "b" ]
                 ),
-                body: .BinaryOperator(
+                body: BinaryOperatorExpression(
                     code: "+",
-                    left: .Variable("a"),
-                    right: .Variable("b")
+                    left: VariableExpression("a"),
+                    right: VariableExpression("b")
                 )
             )
         )
@@ -137,9 +137,9 @@ class CombinedTests: XCTestCase {
     }
     
     func testTopLevelNumbers() {
-        assertStringToExpression("0;", .Number(0))
-        assertStringToExpression("00.00;", .Number(0))
-        assertStringToExpression("10.0;", .Number(10))
-        assertStringToExpression("10.01;", .Number(10.01))
+        assertStringToValueExpression("0", NumberExpression(0))
+        assertStringToValueExpression("00.00", NumberExpression(0))
+        assertStringToValueExpression("10.0", NumberExpression(10))
+        assertStringToValueExpression("10.01", NumberExpression(10.01))
     }
 }

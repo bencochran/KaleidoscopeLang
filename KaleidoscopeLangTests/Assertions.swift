@@ -50,12 +50,26 @@ func assertStringToTokens(string: String, _ tokens: [Token], message: String = "
     assert(parsed.right, ==, tokens, message: message, file: file, line: line)
 }
 
-func assertTokensToExpression(tokens: [Token], _ expression: Expression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
-    let parsed = parse(tokens)
+func assertTokensToTopLevelExpression(tokens: [Token], _ expression: TopLevelExpression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
+    let parsed = parseTopLevelExpression(tokens)
     assert(parsed.right, ==, expression, message: message, file: file, line: line)
 }
 
-func assertStringToExpression(string: String, _ expression: Expression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
-    let parsed = parse(string)
+func assertTokensToValueExpression(tokens: [Token], _ expression: ValueExpression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
+    let parsed = parseValueExpression(tokens)
     assert(parsed.right, ==, expression, message: message, file: file, line: line)
+}
+
+func assertStringToTopLevelExpression(string: String, _ expression: TopLevelExpression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
+    let parsed = parseTopLevelExpression(string)
+    assert(parsed.right, ==, expression, message: message, file: file, line: line)
+}
+
+func assertStringToValueExpression(string: String, _ expression: ValueExpression, message: String = "", file: String = __FILE__, line: UInt = __LINE__) {
+    let parsed = parseValueExpression(string)
+    assert(parsed.right, ==, expression, message: message, file: file, line: line)
+}
+
+func == (left: Expression, right: Expression) -> Bool {
+    return left.equals(right)
 }
