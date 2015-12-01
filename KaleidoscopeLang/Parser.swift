@@ -35,7 +35,7 @@ private let valueExpression: ValueExpressionParser = fix { valueExpression in
     let callargs = %(.Character("(")) *> many(valueExpression) <* %(.Character(")"))
     
     /// call ::= Identifier callargs
-    let call: ValueExpressionParser = CallExpression.init <^> ( lift(pair) <*> identifier <*> callargs )
+    let call: ValueExpressionParser = curry(CallExpression.init) <^> identifier <*> callargs
     
     /// primary
     ///     ::= call
@@ -57,10 +57,10 @@ private let valueExpression: ValueExpressionParser = fix { valueExpression in
     ])
     
     /// infixRight ::= infixOperator primary
-    let infixRight = lift(pair) <*> infixOperator <*> primary
+    let infixRight = curry(pair) <^> infixOperator <*> primary
     
     /// infix ::= primary infixRight*
-    let repackedInfix = map(id, ArraySlice.init) <^> ( lift(pair) <*> primary <*> many(infixRight) )
+    let repackedInfix = curry(map(id, ArraySlice.init)) <^> primary <*> many(infixRight)
     let infix: ValueExpressionParser = collapsePackedInfix <^> repackedInfix
     
     /// valueExpression
@@ -75,10 +75,10 @@ private let valueExpression: ValueExpressionParser = fix { valueExpression in
 private let prototypeArgs = %(.Character("(")) *> many(identifier) <* %(.Character(")"))
 
 /// prototype ::= Identifier prototypeArgs
-private let prototype = PrototypeExpression.init <^> ( lift(pair) <*> identifier <*> prototypeArgs )
+private let prototype = curry(PrototypeExpression.init) <^> identifier <*> prototypeArgs
 
 /// definition ::= "def" prototype expression
-private let definition: TopLevelExpressionParser = FunctionExpression.init <^> ( %(Token.Def) *> lift(pair) <*> prototype <*> valueExpression )
+private let definition: TopLevelExpressionParser = %(Token.Def) *> (curry(FunctionExpression.init) <^> prototype <*> valueExpression)
 
 /// external ::= "extern" prototype
 private let external: TopLevelExpressionParser = id <^> ( %(Token.Extern) *> prototype )

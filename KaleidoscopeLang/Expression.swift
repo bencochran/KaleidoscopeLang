@@ -21,7 +21,7 @@ extension Expression where Self : Equatable {
         return false
     }
 }
-public func == (left: Expression, right: Expression) -> Bool {
+public func == <E: Expression> (left: E, right: E) -> Bool {
     return left.equals(right)
 }
 
